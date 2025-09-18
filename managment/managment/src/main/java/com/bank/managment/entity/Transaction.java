@@ -1,11 +1,9 @@
 package com.bank.managment.entity;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.Entity;
 import lombok.Setter;
 
 @AllArgsConstructor
@@ -14,6 +12,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Transaction {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTransaction;
     private Double amount;
     private String transactionType;

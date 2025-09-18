@@ -1,12 +1,10 @@
 package com.bank.managment.entity;
 
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.Entity;
 import lombok.Setter;
 
 import java.util.List;
@@ -20,6 +18,8 @@ import java.util.List;
 
 
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUser;
     private String name;
     private String email;

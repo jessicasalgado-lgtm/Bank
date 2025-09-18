@@ -1,12 +1,12 @@
 package com.bank.managment.entity;
 
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.Entity;
+
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -23,4 +23,7 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "user_id") // nombre de la columna FK en la tabla Account
     private User user;
+    // Una cuenta puede tener muchas transacciones
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Transaction> transactions;
 }

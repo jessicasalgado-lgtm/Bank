@@ -1,17 +1,16 @@
 package com.bank.managment.service;
 
-import com.bank.managment.dto.request.CreateAccountDTO;
-import com.bank.managment.dto.response.AccountDTO;
+import com.bank.managment.entity.Account;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface AccountService {
-    AccountDTO save(CreateAccountDTO dto);
-    AccountDTO update(Long id, CreateAccountDTO dto);
+    Account save(Account account);
+    Account update(Long id, Account account);
     void delete(Long id);
-    Optional<AccountDTO> getById(Long id);
-    List<AccountDTO> getAll();
+    Optional<Account> getById(Long id);
+    List<Account> getAll();
 }
 
 

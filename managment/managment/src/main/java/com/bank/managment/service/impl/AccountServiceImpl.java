@@ -1,36 +1,42 @@
 package com.bank.managment.service.impl;
 
+import com.bank.managment.dto.request.CreateAccountDTO;
+import com.bank.managment.dto.response.AccountDTO;
 import com.bank.managment.entity.Account;
+import com.bank.managment.mapper.AccountMapper;
 import com.bank.managment.repository.AccountRepository;
 import com.bank.managment.service.AccountService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
+    private final AccountMapper accountMapper;
 
-    public AccountServiceImpl(AccountRepository accountRepository) {
+    public AccountServiceImpl(AccountRepository accountRepository, AccountMapper accountMapper) {
         this.accountRepository = accountRepository;
+        this.accountMapper = accountMapper;
     }
 
     @Override
-    public Account save(Account account) {
-        return accountRepository.save(account);
+    public AccountDTO save(CreateAccountDTO dto) {
+        Account account = accountMapper.toEntity(dto);
+        return accountMapper.toDTO(accountRepository.save(account));
     }
 
     @Override
-    public Account update(Long id, Account accountDetails) {
+    public AccountDTO update(Long id, CreateAccountDTO dto) {
         return accountRepository.findById(id)
                 .map(account -> {
-                    account.setAccountNumber(accountDetails.getAccountNumber());
-                    account.setAccountType(accountDetails.getAccountType());
-                    account.setBalance(accountDetails.getBalance());
-                    account.setUser(accountDetails.getUser());
-                    return accountRepository.save(account);
+                    account.setAccountNumber(dto.getAccountNumber());
+                    account.setAccountType(dto.getAccountType());
+                    account.setBalance(dto.getBalance());
+                    return accountMapper.toDTO(accountRepository.save(account));
                 })
                 .orElseThrow(() -> new RuntimeException("Cuenta no encontrada con id " + id));
     }
@@ -41,13 +47,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Optional<Account> getById(Long id) {
-        return accountRepository.findById(id);
+    public Optional<AccountDTO> getById(Long id) {
+        return accountRepository.findById(id)
+                .map(accountMapper::toDTO);
     }
 
     @Override
-    public List<Account> getAll() {
-        return accountRepository.findAll();
+    public List<AccountDTO> getAll() {
+        return accountRepository.findAll()
+                .stream()
+                .map(accountMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }
+
 

@@ -6,7 +6,6 @@ import com.bank.managment.entity.User;
 import com.bank.managment.mapper.UserMapper;
 import com.bank.managment.repository.UserRepository;
 import com.bank.managment.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,17 +13,20 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
+        this.userRepository = userRepository;
+        this.userMapper = userMapper;
+    }
+
     @Override
     public UserDTO save(CreateUserDTO dto) {
         User user = userMapper.toEntity(dto);
-        User saved = userRepository.save(user);
-        return userMapper.toDTO(saved);
+        return userMapper.toDTO(userRepository.save(user));
     }
 
     @Override
@@ -46,7 +48,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDTO> getById(Long id) {
-        return userRepository.findById(id).map(userMapper::toDTO);
+        return userRepository.findById(id)
+                .map(userMapper::toDTO);
     }
 
     @Override
@@ -57,5 +60,6 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 }
+
 
 

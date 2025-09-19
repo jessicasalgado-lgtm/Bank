@@ -1,14 +1,15 @@
 package com.bank.managment.service;
 
-import com.bank.managment.entity.User;
+import com.bank.managment.dto.request.CreateUserDTO;
+import com.bank.managment.dto.response.UserDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    User save(User user);
-    User update(Long id, User userDetails);
+    UserDTO save(CreateUserDTO dto);
+    UserDTO update(Long id, CreateUserDTO dto);
     void delete(Long id);
-    Optional<User> getById(Long id);
-    List<User> getAll();
+    Optional<UserDTO> getById(Long id);
+    List<UserDTO> getAll();
 }

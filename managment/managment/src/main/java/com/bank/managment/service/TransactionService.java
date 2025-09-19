@@ -1,15 +1,14 @@
 package com.bank.managment.service;
 
-import com.bank.managment.dto.request.CreateTransactionDTO;
-import com.bank.managment.dto.response.TransactionDTO;
+import com.bank.managment.entity.Transaction;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface TransactionService {
-    TransactionDTO save(CreateTransactionDTO dto);
-    TransactionDTO update(Long id, CreateTransactionDTO dto);
+    Transaction save(Transaction transaction);
+    Transaction update(Long id, Transaction transaction);
     void delete(Long id);
-    Optional<TransactionDTO> getById(Long id);
-    List<TransactionDTO> getAll();
+    Optional<Transaction> getById(Long id);
+    List<Transaction> getAll();
 }

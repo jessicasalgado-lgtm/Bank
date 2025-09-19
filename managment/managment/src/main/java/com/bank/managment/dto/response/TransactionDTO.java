@@ -1,4 +1,4 @@
-package com.bank.managment.dto.request;
+package com.bank.managment.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CreateTransactionDTO {
+public class TransactionDTO {
+    private Long idTransaction;
     private String transactionType;
     private Double amount;
-    private Long accountId; // para relacionarla con una cuenta
+    private Long accountId;
 }

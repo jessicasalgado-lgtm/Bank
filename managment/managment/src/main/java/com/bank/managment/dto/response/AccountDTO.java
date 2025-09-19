@@ -1,5 +1,4 @@
-
-package com.bank.managment.dto.request;
+package com.bank.managment.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,9 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CreateAccountDTO {
+public class AccountDTO {
+    private Long idAccount;
     private String accountNumber;
     private String accountType;
     private Double balance;
 }
-

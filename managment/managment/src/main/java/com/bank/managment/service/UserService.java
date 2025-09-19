@@ -1,4 +1,4 @@
-package com.bank.managment.service;
+/*package com.bank.managment.service;
 
 import com.bank.managment.dto.request.CreateUserDTO;
 import com.bank.managment.dto.response.UserDTO;
@@ -12,4 +12,18 @@ public interface UserService {
     void delete(Long id);
     Optional<UserDTO> getById(Long id);
     List<UserDTO> getAll();
+}*/
+package com.bank.managment.service;
+
+import com.bank.managment.entity.User;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface UserService {
+    User save(User user);
+    User update(Long id, User user);
+    void delete(Long id);
+    Optional<User> getById(Long id);
+    List<User> getAll();
 }

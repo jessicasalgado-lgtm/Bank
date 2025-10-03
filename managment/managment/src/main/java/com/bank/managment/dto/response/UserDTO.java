@@ -14,4 +14,7 @@ public class UserDTO {
     private Long idUser;
     private String name;
     private String email;
+
+
+
 }

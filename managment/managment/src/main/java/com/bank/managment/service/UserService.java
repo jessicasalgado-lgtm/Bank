@@ -1,29 +1,21 @@
-/*package com.bank.managment.service;
+package com.bank.managment.service;
 
 import com.bank.managment.dto.request.CreateUserDTO;
+import com.bank.managment.dto.request.UpdateUserDTO;
 import com.bank.managment.dto.response.UserDTO;
+import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
     UserDTO save(CreateUserDTO dto);
-    UserDTO update(Long id, CreateUserDTO dto);
+
     void delete(Long id);
+
     Optional<UserDTO> getById(Long id);
+
     List<UserDTO> getAll();
-}*/
-package com.bank.managment.service;
 
-import com.bank.managment.entity.User;
-
-import java.util.List;
-import java.util.Optional;
-
-public interface UserService {
-    User save(User user);
-    User update(Long id, User user);
-    void delete(Long id);
-    Optional<User> getById(Long id);
-    List<User> getAll();
+    Object update(@Valid UpdateUserDTO userDTO);
 }

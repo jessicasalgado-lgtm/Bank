@@ -27,4 +27,6 @@ public class User {
     // Un usuario puede tener varias cuentas
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Account> accounts;
+
+
 }

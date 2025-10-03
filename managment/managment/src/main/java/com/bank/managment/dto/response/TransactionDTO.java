@@ -13,5 +13,5 @@ public class TransactionDTO {
     private Long idTransaction;
     private String transactionType;
     private Double amount;
-    private Long accountId;
+    private Long idAccount;
 }
